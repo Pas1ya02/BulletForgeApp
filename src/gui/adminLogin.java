@@ -5,6 +5,9 @@
 package gui;
 
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import model.MySQL;
 
 /**
  *
@@ -43,7 +46,6 @@ public class adminLogin extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Logo.png"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(900, 600));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -63,6 +65,11 @@ public class adminLogin extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton2.setText("Sign In");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -96,7 +103,7 @@ public class adminLogin extends javax.swing.JFrame {
                 .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jButton2)
-                .addGap(0, 145, Short.MAX_VALUE))
+                .addGap(0, 144, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 600));
@@ -131,6 +138,37 @@ public class adminLogin extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+         String username = jTextField2.getText();
+        String password = String.valueOf(jPasswordField2.getPassword());
+
+        if (username.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter your username", "Warning", JOptionPane.ERROR_MESSAGE);
+        
+
+        } else if (password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter your password", "Warning", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+               ResultSet resultSet =  MySQL.excute("SELECT * FROM `admin`WHERE `username`='" + username + "' AND `password`='" + password + "' ");
+
+                if (resultSet.next()) {
+//                   String fname = resultSet.getString("first_name");
+//                   String lname = resultSet.getString("last_name");
+                   
+                   adminPanalDashboard dashboard = new adminPanalDashboard();
+                   dashboard.setVisible(true);
+                   dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Invalid Details", "Warning", JOptionPane.ERROR_MESSAGE);
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
