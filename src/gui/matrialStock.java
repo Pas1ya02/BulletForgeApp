@@ -8,12 +8,12 @@ package gui;
  *
  * @author Admin
  */
-public class employee extends javax.swing.JInternalFrame {
+public class matrialStock extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form employee
      */
-    public employee() {
+    public matrialStock() {
         initComponents();
     }
 
@@ -51,16 +51,10 @@ public class employee extends javax.swing.JInternalFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "employeee No", "Title 2", "Title 3", "Title 4"
+                "Material Name", "Title 2", "Title 3", "Title 4"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setHeaderValue("employeee No");
-            jTable1.getColumnModel().getColumn(1).setHeaderValue("Title 2");
-            jTable1.getColumnModel().getColumn(2).setHeaderValue("Title 3");
-            jTable1.getColumnModel().getColumn(3).setHeaderValue("Title 4");
-        }
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 820, 290));
 
@@ -89,7 +83,7 @@ public class employee extends javax.swing.JInternalFrame {
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(0, 0, 0));
-        jButton4.setText("Add Employee");
+        jButton4.setText("Add Material");
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 460, 130, 40));
 
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N

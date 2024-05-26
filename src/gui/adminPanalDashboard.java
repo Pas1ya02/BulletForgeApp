@@ -147,6 +147,9 @@ public class adminPanalDashboard extends javax.swing.JFrame {
 
         jmanger.setBackground(new java.awt.Color(51, 51, 51));
         jmanger.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmangerMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jmangerMousePressed(evt);
             }
@@ -156,11 +159,19 @@ public class adminPanalDashboard extends javax.swing.JFrame {
         lable.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lable.setForeground(new java.awt.Color(204, 204, 204));
         lable.setText("Manager");
+        lable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lableMouseClicked(evt);
+            }
+        });
         jmanger.add(lable, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 70, -1));
 
         jproductstock.setBackground(new java.awt.Color(51, 51, 51));
         jproductstock.setPreferredSize(new java.awt.Dimension(213, 35));
         jproductstock.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jproductstockMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jproductstockMousePressed(evt);
             }
@@ -194,6 +205,9 @@ public class adminPanalDashboard extends javax.swing.JFrame {
         jmatirialstock.setBackground(new java.awt.Color(51, 51, 51));
         jmatirialstock.setPreferredSize(new java.awt.Dimension(213, 35));
         jmatirialstock.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmatirialstockMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jmatirialstockMousePressed(evt);
             }
@@ -227,6 +241,9 @@ public class adminPanalDashboard extends javax.swing.JFrame {
         jPanel9.setBackground(new java.awt.Color(51, 51, 51));
         jPanel9.setPreferredSize(new java.awt.Dimension(213, 35));
         jPanel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel9MouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanel9MousePressed(evt);
             }
@@ -510,6 +527,34 @@ public class adminPanalDashboard extends javax.swing.JFrame {
         jPanel15.removeAll();
         jPanel15.add(employeeClass).setVisible(true);
     }//GEN-LAST:event_jemployeeMouseClicked
+
+    private void jproductstockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jproductstockMouseClicked
+        productStock productStockClass = new productStock();
+        jPanel15.removeAll();
+        jPanel15.add(productStockClass).setVisible(true);
+    }//GEN-LAST:event_jproductstockMouseClicked
+
+    private void lableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lableMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lableMouseClicked
+
+    private void jmatirialstockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmatirialstockMouseClicked
+        matrialStock materialStockClass = new matrialStock();
+        jPanel15.removeAll();
+        jPanel15.add(materialStockClass).setVisible(true);
+    }//GEN-LAST:event_jmatirialstockMouseClicked
+
+    private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
+        supplier supplierClass = new supplier();
+        jPanel15.removeAll();
+        jPanel15.add(supplierClass).setVisible(true);
+    }//GEN-LAST:event_jPanel9MouseClicked
+
+    private void jmangerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmangerMouseClicked
+        manager managerClass = new manager();
+        jPanel15.removeAll();
+        jPanel15.add(managerClass).setVisible(true);
+    }//GEN-LAST:event_jmangerMouseClicked
 
     /**
      * @param args the command line arguments
