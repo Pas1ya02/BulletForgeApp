@@ -17,7 +17,7 @@ public class MySQL {
         }
     }
 
-    public static ResultSet excute(String query) throws Exception {
+    public static ResultSet execute(String query) throws Exception {
 
         Statement statement = connection.createStatement();
 
