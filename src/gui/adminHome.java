@@ -4,17 +4,31 @@
  */
 package gui;
 
+import java.awt.Color;
+
 /**
  *
  * @author USER
  */
 public class adminHome extends javax.swing.JFrame {
 
-    /**
-     * Creates new form adminHome
-     */
+  Color DefaultColor,ClickedColor;
     public adminHome() {
         initComponents();
+    // Set button Colours
+        DefaultColor = new Color(60,63,65);
+        ClickedColor = new Color (102,102,102);
+        
+        jButton1.setBackground(DefaultColor);
+        jButton2.setBackground(DefaultColor);
+        jButton3.setBackground(DefaultColor);
+        jButton4.setBackground(DefaultColor);
+        jButton5.setBackground(DefaultColor);
+        jButton6.setBackground(DefaultColor);
+        jButton7.setBackground(DefaultColor);
+        jButton8.setBackground(DefaultColor);
+        jButton9.setBackground(DefaultColor);
+        
     }
 
     /**
@@ -27,171 +41,179 @@ public class adminHome extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        MenuText = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setPreferredSize(new java.awt.Dimension(263, 216));
-
-        jLabel1.setFont(new java.awt.Font("Courier New", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText(" Dashboard");
-
-        jButton1.setBackground(new java.awt.Color(60, 63, 65));
-        jButton1.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Manager ");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton2.setBackground(new java.awt.Color(60, 63, 65));
-        jButton2.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Employee Management");
+        jButton2.setText("Manager ");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton2MousePressed(evt);
+            }
+        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 178, 217, 31));
+
+        jButton1.setBackground(new java.awt.Color(60, 63, 65));
+        jButton1.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Employee Management");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton1MousePressed(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 129, 217, 31));
 
         jButton3.setBackground(new java.awt.Color(60, 63, 65));
-        jButton3.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Product Stock");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton3MousePressed(evt);
+            }
+        });
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-
-        jButton4.setBackground(new java.awt.Color(60, 63, 65));
-        jButton4.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Invoice");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        jButton5.setBackground(new java.awt.Color(60, 63, 65));
-        jButton5.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Suppliers");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 227, 217, 31));
 
         jButton6.setBackground(new java.awt.Color(60, 63, 65));
-        jButton6.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        jButton6.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Material Stock");
+        jButton6.setText("Invoice");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton6MousePressed(evt);
+            }
+        });
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 373, 217, 31));
 
-        jButton7.setBackground(new java.awt.Color(60, 63, 65));
-        jButton7.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("Log Out");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+        jButton5.setBackground(new java.awt.Color(60, 63, 65));
+        jButton5.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("Suppliers");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton5MousePressed(evt);
             }
         });
-
-        jButton8.setBackground(new java.awt.Color(60, 63, 65));
-        jButton8.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setText("Report");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                jButton5ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 324, 217, 31));
+
+        jButton4.setBackground(new java.awt.Color(60, 63, 65));
+        jButton4.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Material Stock");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton4MousePressed(evt);
+            }
+        });
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 275, 217, 31));
 
         jButton9.setBackground(new java.awt.Color(60, 63, 65));
-        jButton9.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        jButton9.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         jButton9.setForeground(new java.awt.Color(255, 255, 255));
-        jButton9.setText("Settings");
+        jButton9.setText("Log Out");
+        jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton9MousePressed(evt);
+            }
+        });
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 544, 217, 31));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(24, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(22, 22, 22)))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1)
-                .addGap(64, 64, 64)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(72, 72, 72)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(497, Short.MAX_VALUE)))
-        );
+        jButton7.setBackground(new java.awt.Color(60, 63, 65));
+        jButton7.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(255, 255, 255));
+        jButton7.setText("Report");
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton7MousePressed(evt);
+            }
+        });
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 422, 217, 31));
+
+        jButton8.setBackground(new java.awt.Color(60, 63, 65));
+        jButton8.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(255, 255, 255));
+        jButton8.setText("Settings");
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton8MousePressed(evt);
+            }
+        });
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 471, 217, 31));
+
+        jPanel3.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        MenuText.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        MenuText.setForeground(new java.awt.Color(0, 0, 0));
+        MenuText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        MenuText.setText("DashBoard");
+        jPanel3.add(MenuText, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 30, 225, 54));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 263, -1));
 
         jPanel2.setPreferredSize(new java.awt.Dimension(950, 600));
 
@@ -199,11 +221,11 @@ public class adminHome extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 950, Short.MAX_VALUE)
+            .addGap(0, 960, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -213,7 +235,8 @@ public class adminHome extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 960, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,29 +247,33 @@ public class adminHome extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
@@ -256,9 +283,130 @@ public class adminHome extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
+// Button popup part
+    private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
+        jButton1.setBackground(ClickedColor);
+        jButton2.setBackground(DefaultColor);
+        jButton3.setBackground(DefaultColor);
+        jButton4.setBackground(DefaultColor);
+        jButton5.setBackground(DefaultColor);
+        jButton6.setBackground(DefaultColor);
+        jButton7.setBackground(DefaultColor);
+        jButton8.setBackground(DefaultColor);
+        jButton9.setBackground(DefaultColor);
+        
+        MenuText.setText("Employee Management");
+    }//GEN-LAST:event_jButton1MousePressed
+
+    private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
+        jButton1.setBackground(DefaultColor);
+        jButton2.setBackground(ClickedColor);
+        jButton3.setBackground(DefaultColor);
+        jButton4.setBackground(DefaultColor);
+        jButton5.setBackground(DefaultColor);
+        jButton6.setBackground(DefaultColor);
+        jButton7.setBackground(DefaultColor);
+        jButton8.setBackground(DefaultColor);
+        jButton9.setBackground(DefaultColor);
+        
+        MenuText.setText("Manager");
+    }//GEN-LAST:event_jButton2MousePressed
+
+    private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
+        jButton1.setBackground(DefaultColor);
+        jButton2.setBackground(DefaultColor);
+        jButton3.setBackground(ClickedColor);
+        jButton4.setBackground(DefaultColor);
+        jButton5.setBackground(DefaultColor);
+        jButton6.setBackground(DefaultColor);
+        jButton7.setBackground(DefaultColor);
+        jButton8.setBackground(DefaultColor);
+        jButton9.setBackground(DefaultColor);
+        
+        MenuText.setText("Product Stock");
+    }//GEN-LAST:event_jButton3MousePressed
+
+    private void jButton4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MousePressed
+        jButton1.setBackground(DefaultColor);
+        jButton2.setBackground(DefaultColor);
+        jButton3.setBackground(DefaultColor);
+        jButton4.setBackground(ClickedColor);
+        jButton5.setBackground(DefaultColor);
+        jButton6.setBackground(DefaultColor);
+        jButton7.setBackground(DefaultColor);
+        jButton8.setBackground(DefaultColor);
+        jButton9.setBackground(DefaultColor);
+        
+        MenuText.setText("Material Stock");
+    }//GEN-LAST:event_jButton4MousePressed
+
+    private void jButton5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MousePressed
+        jButton1.setBackground(DefaultColor);
+        jButton2.setBackground(DefaultColor);
+        jButton3.setBackground(DefaultColor);
+        jButton4.setBackground(DefaultColor);
+        jButton5.setBackground(ClickedColor);
+        jButton6.setBackground(DefaultColor);
+        jButton7.setBackground(DefaultColor);
+        jButton8.setBackground(DefaultColor);
+        jButton9.setBackground(DefaultColor);
+        
+        MenuText.setText("Suppliers");
+    }//GEN-LAST:event_jButton5MousePressed
+
+    private void jButton6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MousePressed
+        jButton1.setBackground(DefaultColor);
+        jButton2.setBackground(DefaultColor);
+        jButton3.setBackground(DefaultColor);
+        jButton4.setBackground(DefaultColor);
+        jButton5.setBackground(DefaultColor);
+        jButton6.setBackground(ClickedColor);
+        jButton7.setBackground(DefaultColor);
+        jButton8.setBackground(DefaultColor);
+        jButton9.setBackground(DefaultColor);
+        
+        MenuText.setText("Invoice");
+    }//GEN-LAST:event_jButton6MousePressed
+
+    private void jButton7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MousePressed
+        jButton1.setBackground(DefaultColor);
+        jButton2.setBackground(DefaultColor);
+        jButton3.setBackground(DefaultColor);
+        jButton4.setBackground(DefaultColor);
+        jButton5.setBackground(DefaultColor);
+        jButton6.setBackground(DefaultColor);
+        jButton7.setBackground(ClickedColor);
+        jButton8.setBackground(DefaultColor);
+        jButton9.setBackground(DefaultColor);
+        
+        MenuText.setText("Report");
+    }//GEN-LAST:event_jButton7MousePressed
+
+    private void jButton8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MousePressed
+        jButton1.setBackground(DefaultColor);
+        jButton2.setBackground(DefaultColor);
+        jButton3.setBackground(DefaultColor);
+        jButton4.setBackground(DefaultColor);
+        jButton5.setBackground(DefaultColor);
+        jButton6.setBackground(DefaultColor);
+        jButton7.setBackground(DefaultColor);
+        jButton8.setBackground(ClickedColor);
+        jButton9.setBackground(DefaultColor);
+        
+        MenuText.setText("Settings");
+    }//GEN-LAST:event_jButton8MousePressed
+
+    private void jButton9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MousePressed
+        jButton1.setBackground(DefaultColor);
+        jButton2.setBackground(DefaultColor);
+        jButton3.setBackground(DefaultColor);
+        jButton4.setBackground(DefaultColor);
+        jButton5.setBackground(DefaultColor);
+        jButton6.setBackground(DefaultColor);
+        jButton7.setBackground(DefaultColor);
+        jButton8.setBackground(DefaultColor);
+        jButton9.setBackground(ClickedColor);
+    }//GEN-LAST:event_jButton9MousePressed
 
     /**
      * @param args the command line arguments
@@ -296,6 +444,7 @@ public class adminHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel MenuText;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -305,8 +454,8 @@ public class adminHome extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }
