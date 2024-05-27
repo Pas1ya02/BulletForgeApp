@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import javax.swing.SwingUtilities;
 
 
@@ -8,11 +9,24 @@ public class managerHome extends javax.swing.JFrame {
 
     public static managerGRN grn;
 
-    /**
-     * Creates new form managerHome
-     */
+  Color DefaultColor,ClickedColor;
     public managerHome() {
         initComponents();
+        
+         DefaultColor = new Color(60,63,65);
+        ClickedColor = new Color (102,102,102);
+        
+        jButton1.setBackground(DefaultColor);
+        jButton2.setBackground(DefaultColor);
+        jButton3.setBackground(DefaultColor);
+//        jButton4.setBackground(DefaultColor);
+//        jButton5.setBackground(DefaultColor);
+//        jButton6.setBackground(DefaultColor);
+//        jButton7.setBackground(DefaultColor);
+//        jButton8.setBackground(DefaultColor);
+        jButton9.setBackground(DefaultColor);
+        
+        
     }
 
     private void addGRN() {
@@ -41,9 +55,10 @@ public class managerHome extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        MenuText = new javax.swing.JLabel();
+        jButton9 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -53,34 +68,65 @@ public class managerHome extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(60, 63, 65));
         jButton1.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("NEW GRN");
+        jButton1.setText("New GRN");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton1MousePressed(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Courier New", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText(" Dashboard");
+        jButton3.setBackground(new java.awt.Color(60, 63, 65));
+        jButton3.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("New Invoice");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton3MousePressed(evt);
+            }
+        });
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(60, 63, 65));
         jButton2.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("NEW INVOICE");
+        jButton2.setText("Employee Management");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton2MousePressed(evt);
+            }
+        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(60, 63, 65));
-        jButton3.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Employee Management");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        MenuText.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        MenuText.setForeground(new java.awt.Color(0, 0, 0));
+        MenuText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        MenuText.setText("DashBoard");
+
+        jButton9.setBackground(new java.awt.Color(60, 63, 65));
+        jButton9.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        jButton9.setForeground(new java.awt.Color(255, 255, 255));
+        jButton9.setText("Log Out");
+        jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton9MousePressed(evt);
+            }
+        });
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButton9ActionPerformed(evt);
             }
         });
 
@@ -88,30 +134,31 @@ public class managerHome extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(MenuText, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(21, 21, 21))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(38, 38, 38)
+                .addComponent(MenuText, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
 
         jPanel2.setPreferredSize(new java.awt.Dimension(950, 600));
@@ -138,10 +185,6 @@ public class managerHome extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        addGRN();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -149,6 +192,74 @@ public class managerHome extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        addGRN();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MousePressed
+        jButton1.setBackground(DefaultColor);
+        jButton3.setBackground(DefaultColor);
+        jButton2.setBackground(DefaultColor);
+        
+        jButton9.setBackground(ClickedColor);
+    }//GEN-LAST:event_jButton9MousePressed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        jButton1.setBackground(ClickedColor);
+        jButton2.setBackground(DefaultColor);
+        jButton3.setBackground(DefaultColor);
+//        jButton4.setBackground(DefaultColor);
+//        jButton5.setBackground(DefaultColor);
+//        jButton6.setBackground(DefaultColor);
+//        jButton7.setBackground(DefaultColor);
+//        jButton8.setBackground(DefaultColor);
+        jButton9.setBackground(DefaultColor);
+
+    }//GEN-LAST:event_jButton9ActionPerformed
+    
+//button popup
+    private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
+        jButton1.setBackground(ClickedColor);
+        jButton2.setBackground(DefaultColor);
+        jButton3.setBackground(DefaultColor);
+//        jButton4.setBackground(DefaultColor);
+//        jButton5.setBackground(DefaultColor);
+//        jButton6.setBackground(DefaultColor);
+//        jButton7.setBackground(DefaultColor);
+//        jButton8.setBackground(DefaultColor);
+        jButton9.setBackground(DefaultColor);
+        
+        MenuText.setText("New GRN");
+    }//GEN-LAST:event_jButton1MousePressed
+
+    private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
+        jButton1.setBackground(DefaultColor);
+        jButton2.setBackground(ClickedColor);
+        jButton3.setBackground(DefaultColor);
+//        jButton4.setBackground(DefaultColor);
+//        jButton5.setBackground(DefaultColor);
+//        jButton6.setBackground(DefaultColor);
+//        jButton7.setBackground(DefaultColor);
+//        jButton8.setBackground(DefaultColor);
+        jButton9.setBackground(DefaultColor);
+        
+        MenuText.setText("Employee Management");
+    }//GEN-LAST:event_jButton2MousePressed
+
+    private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
+        jButton1.setBackground(DefaultColor);
+        jButton2.setBackground(DefaultColor);
+        jButton3.setBackground(ClickedColor);
+//        jButton4.setBackground(DefaultColor);
+//        jButton5.setBackground(DefaultColor);
+//        jButton6.setBackground(DefaultColor);
+//        jButton7.setBackground(DefaultColor);
+//        jButton8.setBackground(DefaultColor);
+        jButton9.setBackground(DefaultColor);
+        
+        MenuText.setText("New Invoice");
+    }//GEN-LAST:event_jButton3MousePressed
 
     /**
      * @param args the command line arguments
@@ -186,10 +297,11 @@ public class managerHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel MenuText;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
