@@ -65,7 +65,6 @@ public static productStock stok;
         jButton8 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         MenuText = new javax.swing.JLabel();
-        jButton10 = new javax.swing.JButton();
         jp2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -225,22 +224,6 @@ public static productStock stok;
         MenuText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MenuText.setText("DashBoard");
         jPanel3.add(MenuText, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 225, 54));
-
-        jButton10.setBackground(new java.awt.Color(60, 63, 65));
-        jButton10.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
-        jButton10.setForeground(new java.awt.Color(255, 255, 255));
-        jButton10.setText("New GRN");
-        jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton10MousePressed(evt);
-            }
-        });
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, -1, -1));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 263, -1));
 
@@ -437,24 +420,6 @@ public static productStock stok;
         jButton9.setBackground(ClickedColor);
     }//GEN-LAST:event_jButton9MousePressed
 
-    private void jButton10MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MousePressed
-        jButton1.setBackground(ClickedColor);
-        jButton2.setBackground(DefaultColor);
-        jButton3.setBackground(DefaultColor);
-        //        jButton4.setBackground(DefaultColor);
-        //        jButton5.setBackground(DefaultColor);
-        //        jButton6.setBackground(DefaultColor);
-        //        jButton7.setBackground(DefaultColor);
-        //        jButton8.setBackground(DefaultColor);
-        jButton9.setBackground(DefaultColor);
-
-        MenuText.setText("New GRN");
-    }//GEN-LAST:event_jButton10MousePressed
-
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-      
-    }//GEN-LAST:event_jButton10ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -494,7 +459,6 @@ public static productStock stok;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel MenuText;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
