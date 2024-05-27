@@ -10,8 +10,8 @@ package gui;
  */
 public class managerGRN extends javax.swing.JPanel {
 
-    private managerHome managerhome;
-    
+    private managerHome home;
+
     public managerGRN(managerHome aThis) {
         initComponents();
     }
@@ -295,7 +295,7 @@ public class managerGRN extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        this.managerhome.removeUserManagement();
+        this.home.removeGRN();
     }//GEN-LAST:event_jButton5ActionPerformed
 
 

@@ -30,7 +30,7 @@ public class managerHome extends javax.swing.JFrame {
         
     }
     
-    public void removeUserManagement() {
+    public void removeGRN() {
         jPanel2.remove(grn);
         grn = null;
         SwingUtilities.updateComponentTreeUI(jPanel2);
