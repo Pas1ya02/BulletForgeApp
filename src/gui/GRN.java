@@ -82,8 +82,6 @@ public class GRN extends javax.swing.JFrame {
 
         jLabel8.setText("Quantity");
 
-        jFormattedTextField1.setText("jFormattedTextField1");
-
         jButton1.setText("jButton1");
 
         jButton2.setText("jButton1");

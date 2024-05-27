@@ -151,7 +151,7 @@ public class adminLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please enter your password", "Warning", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
-               ResultSet resultSet =  MySQL.excute("SELECT * FROM `admin`WHERE `username`='" + username + "' AND `password`='" + password + "' ");
+               ResultSet resultSet =  MySQL.excute("SELECT * FROM `user`WHERE `username`='" + username + "' AND `password`='" + password + "' AND `user_type_id`=1 ");
 
                 if (resultSet.next()) {
 //                   String fname = resultSet.getString("first_name");
