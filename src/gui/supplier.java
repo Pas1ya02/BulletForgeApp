@@ -8,12 +8,12 @@ package gui;
  *
  * @author Admin
  */
-public class productStock extends javax.swing.JPanel {
+public class supplier extends javax.swing.JPanel {
 
     /**
-     * Creates new form productStock
+     * Creates new form supplier
      */
-    public productStock() {
+    public supplier() {
         initComponents();
     }
 
@@ -35,6 +35,7 @@ public class productStock extends javax.swing.JPanel {
         jButton5 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(11, 9, 22));
+        setPreferredSize(new java.awt.Dimension(835, 584));
 
         jScrollPane1.setBackground(new java.awt.Color(11, 9, 22));
 
@@ -48,7 +49,7 @@ public class productStock extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Material Name", "Title 2", "Title 3", "Title 4"
+                "Supplier Id", "Title 2", "Title 3", "Title 4"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -75,7 +76,7 @@ public class productStock extends javax.swing.JPanel {
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(0, 0, 0));
-        jButton4.setText("Add Material");
+        jButton4.setText("Add Supplier");
 
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(0, 0, 0));
