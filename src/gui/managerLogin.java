@@ -5,6 +5,9 @@
 package gui;
 
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import model.MySQL;
 
 /**
  *
@@ -62,6 +65,11 @@ public class managerLogin extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton2.setText("Sign In");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -130,6 +138,37 @@ public class managerLogin extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+         String username = jTextField2.getText();
+        String password = String.valueOf(jPasswordField2.getPassword());
+
+        if (username.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter your username", "Warning", JOptionPane.ERROR_MESSAGE);
+        
+
+        } else if (password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter your password", "Warning", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+               ResultSet resultSet =  MySQL.execute("SELECT * FROM `user` WHERE `username`='" + username + "' AND `password`='" + password + "' AND `user_type_id`=2 ");
+
+                if (resultSet.next()) {
+//                   String fname = resultSet.getString("first_name");
+//                   String lname = resultSet.getString("last_name");
+                   
+                   managerHome managerhome = new managerHome();
+                   managerhome.setVisible(true);
+                   dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Invalid Details", "Warning", JOptionPane.ERROR_MESSAGE);
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
