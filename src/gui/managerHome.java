@@ -8,7 +8,7 @@ import javax.swing.SwingUtilities;
 public class managerHome extends javax.swing.JFrame {
 
     public static managerGRN grn;
-    public static Invoice invoice;
+   // public static Invoice invoice;
     public static managerCustomerRegistation customer;
 
   Color DefaultColor,ClickedColor;
@@ -40,11 +40,11 @@ public class managerHome extends javax.swing.JFrame {
 
     }
      private void addInvoice() {
-        if (invoice == null) {
-            invoice = new Invoice(this);
-            jPanel2.add(invoice, BorderLayout.CENTER);
-            SwingUtilities.updateComponentTreeUI(jPanel2);
-        }
+//        if (invoice == null) {
+//            invoice = new Invoice(this);
+//            jPanel2.add(invoice, BorderLayout.CENTER);
+//            SwingUtilities.updateComponentTreeUI(jPanel2);
+//        }
 
     }
      
@@ -63,9 +63,9 @@ public class managerHome extends javax.swing.JFrame {
         SwingUtilities.updateComponentTreeUI(jPanel2);
     }
      public void removeInvoice() {
-        jPanel2.remove(invoice);
-        invoice = null;
-        SwingUtilities.updateComponentTreeUI(jPanel2);
+//        jPanel2.remove(invoice);
+//        invoice = null;
+//        SwingUtilities.updateComponentTreeUI(jPanel2);
     }
      
      public void removeCustomer() {
