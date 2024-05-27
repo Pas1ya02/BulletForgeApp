@@ -1,13 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package gui;
 
-/**
- *
- * @author shash
- */
+
 public class managerGRN extends javax.swing.JPanel {
 
     private managerHome home;
@@ -300,12 +293,14 @@ public class managerGRN extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+       
         this.home.removeGRN();
+      
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Stock ad = new Stock();
-       ad.show();
+        ad.show();
        
     }//GEN-LAST:event_jButton1ActionPerformed
 

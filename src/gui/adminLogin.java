@@ -157,8 +157,8 @@ public class adminLogin extends javax.swing.JFrame {
 //                   String fname = resultSet.getString("first_name");
 //                   String lname = resultSet.getString("last_name");
                    
-                   adminPanalDashboard dashboard = new adminPanalDashboard();
-                   dashboard.setVisible(true);
+                   adminHome home = new adminHome();
+                   home.setVisible(true);
                    dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Invalid Details", "Warning", JOptionPane.ERROR_MESSAGE);
