@@ -74,7 +74,7 @@ public class adminProductStock extends javax.swing.JPanel {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Search");
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, -1, -1));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, 110, 30));
 
         jButton6.setText("X");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
