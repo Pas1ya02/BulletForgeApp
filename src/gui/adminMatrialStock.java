@@ -8,16 +8,17 @@ package gui;
  *
  * @author Admin
  */
-public class adminProductStock extends javax.swing.JPanel {
-private adminHome Home;
+public class adminMatrialStock extends javax.swing.JPanel {
+    private adminHome Home;
     /**
-     * Creates new form productStock
+     * Creates new form matrialStock
      */
-    public adminProductStock(adminHome home) {
+    public adminMatrialStock(adminHome home) {
         initComponents();
         this.Home = home;
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,10 +30,10 @@ private adminHome Home;
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jButton6 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -47,8 +48,22 @@ private adminHome Home;
         );
 
         setBackground(new java.awt.Color(11, 9, 22));
+        setPreferredSize(new java.awt.Dimension(500, 600));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTextField2.setText("Enter");
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 420, 30));
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setText("Search");
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 30, 120, 30));
 
         jScrollPane1.setBackground(new java.awt.Color(11, 9, 22));
 
@@ -67,14 +82,9 @@ private adminHome Home;
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 107, 780, 410));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 820, 290));
 
-        jTextField2.setText("Enter");
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 450, 30));
-
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setText("Search");
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, 110, 30));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 840, 540));
 
         jButton6.setText("X");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -82,28 +92,15 @@ private adminHome Home;
                 jButton6ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 813, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton6)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jButton6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-     this.Home.removeproductStock();        // TODO add your handling code here:
+        this.Home.removestock();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
 

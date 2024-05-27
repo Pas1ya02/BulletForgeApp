@@ -15,7 +15,8 @@ import javax.swing.SwingUtilities;
  */
 public class adminHome extends javax.swing.JFrame {
  public static employee emp;
- public static Stock stock;
+ public static adminMatrialStock stock;
+ public static adminProductStock productStock;
   
     public adminHome() {
         initComponents();
@@ -28,16 +29,40 @@ private void addemp() {
         }
 
     }
+public void removeemp() {
+        jPanel2.remove(emp);
+        emp = null;
+        SwingUtilities.updateComponentTreeUI(jPanel2);
+    }
 
 private void addstock() {
-//        if (stock == null) {
-//            stock = new Stock(this);
-//            jPanel2.add(stock, BorderLayout.CENTER);
-//            SwingUtilities.updateComponentTreeUI(jPanel2);
-//        }
+        if (stock == null) {
+            stock = new adminMatrialStock(this);
+            jPanel2.add(stock, BorderLayout.CENTER);
+            SwingUtilities.updateComponentTreeUI(jPanel2);
+        }
 
     }
-    
+     public void removestock() {
+        jPanel2.remove(stock);
+        stock = null;
+        SwingUtilities.updateComponentTreeUI(jPanel2);
+    }
+     
+     private void addproductstock() {
+        if (productStock == null) {
+            productStock = new adminProductStock(this);
+            jPanel2.add(productStock, BorderLayout.CENTER);
+            SwingUtilities.updateComponentTreeUI(jPanel2);
+        }
+
+    }
+     
+      public void removeproductStock() {
+        jPanel2.remove(productStock);
+        productStock = null;
+        SwingUtilities.updateComponentTreeUI(jPanel2);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -243,7 +268,7 @@ private void addstock() {
     }//GEN-LAST:event_jButton3MousePressed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
+addproductstock();        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
@@ -251,7 +276,7 @@ private void addstock() {
     }//GEN-LAST:event_jButton2MousePressed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MousePressed
@@ -267,7 +292,7 @@ private void addstock() {
     }//GEN-LAST:event_jButton4MousePressed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       
+ addstock();       
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MousePressed
