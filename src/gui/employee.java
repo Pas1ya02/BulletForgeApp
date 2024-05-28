@@ -4,6 +4,11 @@
  */
 package gui;
 
+import java.sql.ResultSet;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+import model.MySQL;
+
 /**
  *
  * @author Admin
@@ -15,7 +20,36 @@ public class employee extends javax.swing.JPanel {
      */
     public employee(adminHome home) {
         initComponents();
+        
+        loadUsers("SELECT * FROM `user` "
+                + "INNER JOIN `user_type` ON `user`.`user_type_id` = `user_type`.`id`"
+                + "INNER JOIN `user_status` ON `user`.`user_status_id` = `user_status`.`id`");
         this.Home = home;
+    }
+    
+     private void loadUsers(String query) {
+        try {
+
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+
+            ResultSet resultSet = MySQL.execute(query);
+
+            while (resultSet.next()) {
+                Vector v = new Vector();
+                v.add(resultSet.getString("id"));
+                v.add(resultSet.getString("fname"));
+                v.add(resultSet.getString("lname"));
+                v.add(resultSet.getString("mobile"));
+                v.add(resultSet.getString("username"));
+                v.add(resultSet.getString("type"));
+                v.add(resultSet.getString("status"));
+                model.addRow(v);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
