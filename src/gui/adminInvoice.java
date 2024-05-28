@@ -20,21 +20,21 @@ public class adminInvoice extends javax.swing.JPanel {
      */
     public adminInvoice(adminHome home) {
         initComponents();
-        loadInvoice("SELECT * FROM `invoice` "
-                + "INNER JOIN `invoice_item` ON `invoice`.`invoice_item_id` = `invoice_item`.`id`"
-                + "INNER JOIN `product_stock` ON `invoice_item`.`product_stock_id` = `product_stock`.`id`"
-                + "INNER JOIN `customer` ON `invoice`.`customer_email` = `customer`.`email`"
-                + "INNER JOIN `user` ON `invoice`.`user_email` = `user`.`email`");
+        loadInvoice("");
         this.Home = home;
     }
 
-    private void loadInvoice(String query) {
+    private void loadInvoice(String search) {
         try {
 
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
 
-            ResultSet resultSet = MySQL.execute(query);
+            ResultSet resultSet = MySQL.execute("SELECT * FROM `invoice` "
+                + "INNER JOIN `invoice_item` ON `invoice`.`invoice_item_id` = `invoice_item`.`id`"
+                + "INNER JOIN `product_stock` ON `invoice_item`.`product_stock_id` = `product_stock`.`id`"
+                + "INNER JOIN `customer` ON `invoice`.`customer_email` = `customer`.`email`"
+                + "INNER JOIN `user` ON `invoice`.`user_email` = `user`.`email`WHERE `invoice_number` LIKE '" + search + "%'");
 
             while (resultSet.next()) {
                 Vector v = new Vector();
@@ -53,6 +53,11 @@ public class adminInvoice extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }
+     private void search() {
+
+        String invoice = jTextField2.getText();
+        loadInvoice(invoice);
+ }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -60,8 +65,8 @@ public class adminInvoice extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -88,17 +93,21 @@ public class adminInvoice extends javax.swing.JPanel {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 122, 820, 290));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setText("Search");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(609, 62, 120, 30));
-
-        jTextField2.setText("Enter");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 62, 420, 30));
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField2KeyReleased(evt);
+            }
+        });
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, 420, 30));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setText("Search :");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, -1, -1));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 830, 540));
 
@@ -119,10 +128,14 @@ public class adminInvoice extends javax.swing.JPanel {
         this.Home.removeinvoice();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
+search();        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2KeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton6;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

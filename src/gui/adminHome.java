@@ -404,7 +404,9 @@ public void removereport() {
     }//GEN-LAST:event_jButton9MousePressed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-
+ adminLogin a = new adminLogin();
+       a.show();
+       dispose();        
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MousePressed

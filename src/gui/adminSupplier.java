@@ -20,18 +20,18 @@ public class adminSupplier extends javax.swing.JPanel {
      */
     public adminSupplier(adminHome home) {
         initComponents();
-        loadSupplier("SELECT * FROM `supplier` "
-                + "INNER JOIN `company` ON `supplier`.`company_id` = `company`.`id`");
+        loadSupplier("");
         this.Home = home;
     }
 
-    private void loadSupplier(String query) {
+    private void loadSupplier(String search) {
         try {
 
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
 
-            ResultSet resultSet = MySQL.execute(query);
+            ResultSet resultSet = MySQL.execute("SELECT * FROM `supplier` "
+                + "INNER JOIN `company` ON `supplier`.`company_id` = `company`.`id` WHERE `L_number` LIKE '" + search + "%'");
 
             while (resultSet.next()) {
                 Vector v = new Vector();
@@ -49,7 +49,11 @@ public class adminSupplier extends javax.swing.JPanel {
             e.printStackTrace();
         }
     } 
-   
+   private void search() {
+
+        String lnumber = jTextField2.getText();
+        loadSupplier(lnumber);
+ }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -57,9 +61,9 @@ public class adminSupplier extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -80,17 +84,17 @@ public class adminSupplier extends javax.swing.JPanel {
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField2.setText("Enter");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 420, 30));
-
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setText("Search");
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 30, 120, 30));
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField2KeyReleased(evt);
+            }
+        });
+        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 420, 30));
 
         jScrollPane1.setBackground(new java.awt.Color(11, 9, 22));
 
@@ -123,7 +127,11 @@ public class adminSupplier extends javax.swing.JPanel {
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 870, 440));
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 900, 560));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Search:");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, -1, -1));
+
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 900, 560));
 
         jButton6.setText("X");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -131,7 +139,7 @@ public class adminSupplier extends javax.swing.JPanel {
                 jButton6ActionPerformed(evt);
             }
         });
-        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 10, -1, -1));
+        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -142,10 +150,14 @@ public class adminSupplier extends javax.swing.JPanel {
         this.Home.removesupplier();        
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
+        search();
+    }//GEN-LAST:event_jTextField2KeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton6;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

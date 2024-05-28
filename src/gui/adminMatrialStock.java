@@ -20,20 +20,20 @@ public class adminMatrialStock extends javax.swing.JPanel {
      */
     public adminMatrialStock(adminHome home) {
         initComponents();
-        loadMatirial("SELECT * FROM `metrial_stock` "
-                + "INNER JOIN `meterial` ON `metrial_stock`.`meterial_id` = `meterial`.`id`"
-                + "INNER JOIN `company` ON `meterial`.`company_id` = `company`.`id`");
+        loadMatirial("");
         this.Home = home;
     }
 
     
-      private void loadMatirial(String query) {
+      private void loadMatirial(String search) {
         try {
 
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
 
-            ResultSet resultSet = MySQL.execute(query);
+           ResultSet resultSet = MySQL.execute("SELECT * FROM `metrial_stock` "
+                + "INNER JOIN `meterial` ON `metrial_stock`.`meterial_id` = `meterial`.`id`"
+                + "INNER JOIN `company` ON `meterial`.`company_id` = `company`.`id` WHERE `meterial`.`name` LIKE '" + search + "%'");
 
             while (resultSet.next()) {
                 Vector v = new Vector();
@@ -50,6 +50,13 @@ public class adminMatrialStock extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }
+      
+        private void search() {
+
+        String name = jTextField2.getText();
+        loadMatirial(name);
+ }
+        
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -57,9 +64,9 @@ public class adminMatrialStock extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -79,17 +86,20 @@ public class adminMatrialStock extends javax.swing.JPanel {
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField2.setText("Enter");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 420, 30));
-
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setText("Search");
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 30, 120, 30));
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField2KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
+        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 420, 30));
 
         jScrollPane1.setBackground(new java.awt.Color(11, 9, 22));
 
@@ -104,7 +114,11 @@ public class adminMatrialStock extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 890, 290));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 890, 410));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setText("Search:");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, -1, -1));
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 900, 540));
 
@@ -125,10 +139,18 @@ public class adminMatrialStock extends javax.swing.JPanel {
         this.Home.removestock();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2KeyTyped
+
+    private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
+        search();
+    }//GEN-LAST:event_jTextField2KeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton6;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
