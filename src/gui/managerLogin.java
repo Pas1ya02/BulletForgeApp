@@ -8,6 +8,7 @@ import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import model.MySQL;
+import model.UserBean;
 
 /**
  *
@@ -154,8 +155,19 @@ public class managerLogin extends javax.swing.JFrame {
                ResultSet resultSet =  MySQL.execute("SELECT * FROM `user` WHERE `username`='" + username + "' AND `password`='" + password + "' AND `user_type_id`=2 ");
 
                 if (resultSet.next()) {
-//                   String fname = resultSet.getString("first_name");
-//                   String lname = resultSet.getString("last_name");
+                  
+                  String fname = resultSet.getString("fname");
+                  String lname = resultSet.getString("lname");
+                  String email = resultSet.getString("email");
+                  
+                  UserBean userbean = new UserBean();
+                  userbean.setFname(fname);
+                  userbean.setLname(lname);
+                  userbean.setEmail(email);
+                  
+                  Invoice invoice = new Invoice(null);
+                  
+                  invoice.setUserBean(userbean);
                    
                    managerHome managerhome = new managerHome();
                    managerhome.setVisible(true);
