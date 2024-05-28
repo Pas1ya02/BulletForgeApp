@@ -8,16 +8,17 @@ package gui;
  *
  * @author Admin
  */
-public class employee extends javax.swing.JPanel {
- private adminHome Home;
+public class adminSupplier extends javax.swing.JPanel {
+    private adminHome Home;
     /**
-     * Creates new form employee
+     * Creates new form matrialStock
      */
-    public employee(adminHome home) {
+    public adminSupplier(adminHome home) {
         initComponents();
         this.Home = home;
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,20 +29,45 @@ public class employee extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jTextField2 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(835, 584));
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        setBackground(new java.awt.Color(11, 9, 22));
+        setPreferredSize(new java.awt.Dimension(500, 600));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTextField2.setText("Enter");
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 420, 30));
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setText("Search");
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 30, 120, 30));
 
         jScrollPane1.setBackground(new java.awt.Color(11, 9, 22));
 
+        jTable1.setBackground(new java.awt.Color(11, 9, 22));
         jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -51,39 +77,14 @@ public class employee extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "employeee No", "Name", "Gender", "User type"
+                "Material Name", "Title 2", "Title 3", "Title 4"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 122, 890, 440));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 820, 290));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setText("Search");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(609, 62, 120, 30));
-
-        jTextField2.setText("Enter");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 62, 420, 30));
-
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 900, 570));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 900, 560));
 
         jButton6.setText("X");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -91,7 +92,7 @@ public class employee extends javax.swing.JPanel {
                 jButton6ActionPerformed(evt);
             }
         });
-        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 0, -1, -1));
+        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 10, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -99,18 +100,15 @@ public class employee extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        this.Home.removeemp();        // TODO add your handling code here:
+        this.Home.removesupplier();        
     }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField2;

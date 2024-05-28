@@ -8,20 +8,84 @@ import javax.swing.SwingUtilities;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author USER
  */
 public class adminHome extends javax.swing.JFrame {
- public static employee emp;
- public static adminMatrialStock stock;
- public static adminProductStock productStock;
-  
+
+    public static employee emp;
+    public static adminMatrialStock stock;
+    public static adminProductStock productStock;
+    public static manager manager;
+    public static adminSupplier Supplier;
+    public static adminInvoice invoice;
+    public static report report;
+    public static settings setting;
+
     public adminHome() {
         initComponents();
     }
-private void addemp() {
+    
+    private void addsetting() {
+        if (setting == null) {
+            setting = new settings(this);
+            jPanel2.add(setting, BorderLayout.CENTER);
+            SwingUtilities.updateComponentTreeUI(jPanel2);
+        }
+
+    }
+    
+ public void removesetting() {
+        jPanel2.remove(setting);
+        setting = null;
+        SwingUtilities.updateComponentTreeUI(jPanel2);
+    }
+ 
+    private void addsupplier() {
+        if (Supplier == null) {
+            Supplier = new adminSupplier(this);
+            jPanel2.add(Supplier, BorderLayout.CENTER);
+            SwingUtilities.updateComponentTreeUI(jPanel2);
+        }
+
+    }
+public void removereport() {
+        jPanel2.remove(report);
+        report = null;
+        SwingUtilities.updateComponentTreeUI(jPanel2);
+    }
+
+     private void addreport() {
+        if (report == null) {
+            report = new report(this);
+            jPanel2.add(report, BorderLayout.CENTER);
+            SwingUtilities.updateComponentTreeUI(jPanel2);
+        }
+
+    }
+    
+    private void adminInvoice() {
+        if (invoice == null) {
+            invoice = new adminInvoice(this);
+            jPanel2.add(invoice, BorderLayout.CENTER);
+            SwingUtilities.updateComponentTreeUI(jPanel2);
+        }
+
+    }
+    public void removesupplier() {
+        jPanel2.remove(Supplier);
+        Supplier = null;
+        SwingUtilities.updateComponentTreeUI(jPanel2);
+    }
+    
+ public void removeinvoice() {
+        jPanel2.remove(invoice);
+        invoice = null;
+        SwingUtilities.updateComponentTreeUI(jPanel2);
+    }
+
+    private void addemp() {
         if (emp == null) {
             emp = new employee(this);
             jPanel2.add(emp, BorderLayout.CENTER);
@@ -29,13 +93,14 @@ private void addemp() {
         }
 
     }
-public void removeemp() {
+
+    public void removeemp() {
         jPanel2.remove(emp);
         emp = null;
         SwingUtilities.updateComponentTreeUI(jPanel2);
     }
 
-private void addstock() {
+    private void addstock() {
         if (stock == null) {
             stock = new adminMatrialStock(this);
             jPanel2.add(stock, BorderLayout.CENTER);
@@ -43,13 +108,14 @@ private void addstock() {
         }
 
     }
-     public void removestock() {
+
+    public void removestock() {
         jPanel2.remove(stock);
         stock = null;
         SwingUtilities.updateComponentTreeUI(jPanel2);
     }
-     
-     private void addproductstock() {
+
+    private void addproductstock() {
         if (productStock == null) {
             productStock = new adminProductStock(this);
             jPanel2.add(productStock, BorderLayout.CENTER);
@@ -57,12 +123,28 @@ private void addstock() {
         }
 
     }
-     
-      public void removeproductStock() {
+
+    public void removeproductStock() {
         jPanel2.remove(productStock);
         productStock = null;
         SwingUtilities.updateComponentTreeUI(jPanel2);
-    }    
+    }
+
+    public void removemanager() {
+        jPanel2.remove(manager);
+        manager = null;
+        SwingUtilities.updateComponentTreeUI(jPanel2);
+    }
+
+    private void addmanager() {
+        if (manager == null) {
+            manager = new manager(this);
+            jPanel2.add(manager, BorderLayout.CENTER);
+            SwingUtilities.updateComponentTreeUI(jPanel2);
+        }
+
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -76,6 +158,8 @@ private void addstock() {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -191,6 +275,36 @@ private void addstock() {
             }
         });
 
+        jButton7.setBackground(new java.awt.Color(60, 63, 65));
+        jButton7.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(255, 255, 255));
+        jButton7.setText("Report");
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton7MousePressed(evt);
+            }
+        });
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jButton8.setBackground(new java.awt.Color(60, 63, 65));
+        jButton8.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(255, 255, 255));
+        jButton8.setText("Settings");
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton8MousePressed(evt);
+            }
+        });
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -206,7 +320,9 @@ private void addstock() {
                         .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(21, 21, 21))
         );
         jPanel1Layout.setVerticalGroup(
@@ -226,6 +342,10 @@ private void addstock() {
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
@@ -256,7 +376,7 @@ private void addstock() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
-       
+
     }//GEN-LAST:event_jButton1MousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -264,27 +384,27 @@ private void addstock() {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
-        
+
     }//GEN-LAST:event_jButton3MousePressed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-addproductstock();        
+        addproductstock();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
-        
+
     }//GEN-LAST:event_jButton2MousePressed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       
+        addmanager();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MousePressed
-       
+
     }//GEN-LAST:event_jButton9MousePressed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-       
+
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MousePressed
@@ -292,7 +412,7 @@ addproductstock();
     }//GEN-LAST:event_jButton4MousePressed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
- addstock();       
+        addstock();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MousePressed
@@ -300,7 +420,7 @@ addproductstock();
     }//GEN-LAST:event_jButton5MousePressed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        addsupplier();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MousePressed
@@ -308,8 +428,24 @@ addproductstock();
     }//GEN-LAST:event_jButton6MousePressed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+adminInvoice();        
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7MousePressed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        addreport();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton8MousePressed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        addsetting();
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -355,6 +491,8 @@ addproductstock();
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
