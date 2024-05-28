@@ -8,12 +8,12 @@ package gui;
  *
  * @author Admin
  */
-public class employee extends javax.swing.JPanel {
+public class adminInvoice extends javax.swing.JPanel {
  private adminHome Home;
     /**
      * Creates new form employee
      */
-    public employee(adminHome home) {
+    public adminInvoice(adminHome home) {
         initComponents();
         this.Home = home;
     }
@@ -51,28 +51,15 @@ public class employee extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "employeee No", "Name", "Gender", "User type"
+                "employeee No", "Title 2", "Title 3", "Title 4"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 122, 890, 440));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 122, 820, 290));
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setText("Search");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(609, 62, 120, 30));
 
         jTextField2.setText("Enter");
@@ -83,7 +70,7 @@ public class employee extends javax.swing.JPanel {
         });
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 62, 420, 30));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 900, 570));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 830, 540));
 
         jButton6.setText("X");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -91,7 +78,7 @@ public class employee extends javax.swing.JPanel {
                 jButton6ActionPerformed(evt);
             }
         });
-        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 0, -1, -1));
+        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -99,12 +86,8 @@ public class employee extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        this.Home.removeemp();        // TODO add your handling code here:
+        this.Home.removeinvoice();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -34,6 +34,8 @@ public class productStock extends javax.swing.JPanel {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(11, 9, 22));
+
         jScrollPane1.setBackground(new java.awt.Color(11, 9, 22));
 
         jTable1.setBackground(new java.awt.Color(11, 9, 22));
