@@ -172,7 +172,34 @@ public class adminLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        String username = jTextField2.getText();
+        String password = String.valueOf(jPasswordField2.getPassword());
+
+        if (username.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter your username", "Warning", JOptionPane.ERROR_MESSAGE);
+        
+
+        } else if (password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter your password", "Warning", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+               ResultSet resultSet =  MySQL.execute("SELECT * FROM `user`WHERE `username`='" + username + "' AND `password`='" + password + "' AND `user_type_id`=1 ");
+
+                if (resultSet.next()) {
+//                   String fname = resultSet.getString("first_name");
+//                   String lname = resultSet.getString("last_name");
+                   
+                   adminHome home = new adminHome();
+                   home.setVisible(true);
+                   dispose();
+                   } else {
+                    JOptionPane.showMessageDialog(this, "Invalid Details", "Warning", JOptionPane.ERROR_MESSAGE);
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
