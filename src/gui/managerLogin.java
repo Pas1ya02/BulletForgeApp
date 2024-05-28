@@ -156,9 +156,9 @@ public class managerLogin extends javax.swing.JFrame {
 
                 if (resultSet.next()) {
                   
-                  String fname = resultSet.getString("fname");
-                  String lname = resultSet.getString("lname");
-                  String email = resultSet.getString("email");
+                  String fname = resultSet.getString("user.fname");
+                  String lname = resultSet.getString("user.lname");
+                  String email = resultSet.getString("user.email");
                   
                   UserBean userbean = new UserBean();
                   userbean.setFname(fname);
