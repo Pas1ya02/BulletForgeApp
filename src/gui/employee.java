@@ -21,13 +21,13 @@ public class employee extends javax.swing.JPanel {
     public employee(adminHome home) {
         initComponents();
         
-        loadUsers("SELECT * FROM `user` "
-                + "INNER JOIN `user_type` ON `user`.`user_type_id` = `user_type`.`id`"
-                + "INNER JOIN `user_status` ON `user`.`user_status_id` = `user_status`.`id`");
+        loadEmployee("SELECT * FROM `employee` "
+                + "INNER JOIN `user_type` ON `employee`.`user_type_id` = `user_type`.`id`"
+                + "INNER JOIN `gender` ON `employee`.`gender_id` = `gender`.`id`");
         this.Home = home;
     }
     
-     private void loadUsers(String query) {
+     private void loadEmployee(String query) {
         try {
 
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -37,13 +37,11 @@ public class employee extends javax.swing.JPanel {
 
             while (resultSet.next()) {
                 Vector v = new Vector();
-                v.add(resultSet.getString("id"));
-                v.add(resultSet.getString("fname"));
-                v.add(resultSet.getString("lname"));
-                v.add(resultSet.getString("mobile"));
-                v.add(resultSet.getString("username"));
-                v.add(resultSet.getString("type"));
-                v.add(resultSet.getString("status"));
+                v.add(resultSet.getString("nic"));
+                v.add(resultSet.getString("employee.name"));
+                v.add(resultSet.getString("gender.name"));
+                v.add(resultSet.getString("user_type.type"));
+         
                 model.addRow(v);
             }
 
@@ -79,10 +77,7 @@ public class employee extends javax.swing.JPanel {
         jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "employeee No", "Name", "Gender", "User type"

@@ -34,11 +34,11 @@ public class productStock extends javax.swing.JPanel {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(11, 9, 22));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setForeground(new java.awt.Color(255, 255, 255));
 
         jScrollPane1.setBackground(new java.awt.Color(11, 9, 22));
 
-        jTable1.setBackground(new java.awt.Color(11, 9, 22));
         jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -54,7 +54,6 @@ public class productStock extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Search");
 
         jTextField2.setText("Enter");
@@ -65,7 +64,6 @@ public class productStock extends javax.swing.JPanel {
         });
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setText("Remove");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,11 +72,9 @@ public class productStock extends javax.swing.JPanel {
         });
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(0, 0, 0));
         jButton4.setText("Add Material");
 
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(0, 0, 0));
         jButton5.setText("Update Details");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
