@@ -16,6 +16,16 @@ import model.UserBean;
  */
 public class managerLogin extends javax.swing.JFrame {
 
+    private static String employeeEmail;
+
+    public static String getEmployeeEmail() {
+        return employeeEmail;
+    }
+
+    private static void setEmployeeEmail(String employeeEmail) {
+        managerLogin.employeeEmail = employeeEmail;
+    }
+
     /**
      * Creates new form managerLogin
      */
@@ -158,37 +168,27 @@ public class managerLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         String username = jTextField2.getText();
+        String username = jTextField2.getText();
         String password = String.valueOf(jPasswordField2.getPassword());
 
         if (username.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter your username", "Warning", JOptionPane.ERROR_MESSAGE);
-        
 
         } else if (password.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter your password", "Warning", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
-               ResultSet resultSet =  MySQL.execute("SELECT * FROM `user` WHERE `username`='" + username + "' AND `password`='" + password + "' AND `user_type_id`=2 ");
+                ResultSet resultSet = MySQL.execute("SELECT * FROM `user` WHERE `username`='" + username + "' AND `password`='" + password + "' AND `user_type_id`=2 ");
 
                 if (resultSet.next()) {
-                  
-                  String fname = resultSet.getString("user.fname");
-                  String lname = resultSet.getString("user.lname");
-                  String email = resultSet.getString("user.email");
-                  
-                  UserBean userbean = new UserBean();
-                  userbean.setFname(fname);
-                  userbean.setLname(lname);
-                  userbean.setEmail(email);
-                  
-                  Invoice invoice = new Invoice(null);
-                  
-                  invoice.setUserBean(userbean);
-                   
-                   managerHome managerhome = new managerHome();
-                   managerhome.setVisible(true);
-                   dispose();
+//                   String fname = resultSet.getString("first_name");
+//                   String lname = resultSet.getString("last_name");
+                   String email = resultSet.getString("email");
+
+                    managerHome managerhome = new managerHome();
+                    managerhome.setVisible(true);
+                    dispose();
+                    setEmployeeEmail(email);
                 } else {
                     JOptionPane.showMessageDialog(this, "Invalid Details", "Warning", JOptionPane.ERROR_MESSAGE);
 
@@ -209,7 +209,7 @@ public class managerLogin extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
+
         FlatMacDarkLaf.setup();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
