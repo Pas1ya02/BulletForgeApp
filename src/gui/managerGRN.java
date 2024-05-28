@@ -1,13 +1,90 @@
 package gui;
 
+import java.awt.Color;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Vector;
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import model.GRNItem;
+import model.MySQL;
 
 public class managerGRN extends javax.swing.JPanel {
 
+    HashMap<String, GRNItem> grnItemMap = new HashMap<>();
     private managerHome Home;
 
     public managerGRN(managerHome managerhome) {
         initComponents();
+        generateGRNNumber();
+        jLabel18.setText(managerLogin.getEmployeeEmail());
         this.Home = managerhome;
+    }
+
+    private void generateGRNNumber() {
+        long id = System.currentTimeMillis();
+        jTextField1.setText(String.valueOf(id));
+    }
+
+    public JTextField getjTextField2() {
+        return jTextField2;
+    }
+
+    public JTextField getjTextField3() {
+        return jTextField3;
+    }
+
+    public JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    public JTextField getjTextField1() {
+        return jTextField1;
+    }
+//
+
+    public JLabel getjLabel15() {
+        return jLabel15;
+    }
+
+    public JLabel getjLabel6() {
+        return jLabel6;
+    }
+
+    public JFormattedTextField getjFormattedTextField2() {
+        return jFormattedTextField2;
+    }
+
+    private void loadGrnItems() {
+
+        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        dtm.setRowCount(0);
+
+        double total = 0;
+
+        for (GRNItem grnItem : grnItemMap.values()) {
+            Vector<String> vector = new Vector<>();
+            vector.add(grnItem.getProductId());
+            vector.add(grnItem.getBrandName());
+            vector.add(grnItem.getProductName());
+            vector.add(String.valueOf(grnItem.getQty()));
+            vector.add(String.valueOf(grnItem.getBuyingPrice()));
+//            vector.add(String.valueOf(grnItem.getSellingPrice()));
+//            vector.add(sdf.format(grnItem.getMfg()));
+//            vector.add(sdf.format(grnItem.getExp()));
+
+            double itemTotal = grnItem.getQty() * grnItem.getBuyingPrice();
+            total += itemTotal;
+            vector.add(String.valueOf(itemTotal));
+
+            dtm.addRow(vector);
+        }
+        jLabel11.setText(String.valueOf(total));
     }
 
     /**
@@ -46,9 +123,12 @@ public class managerGRN extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
 
-        jLabel5.setText("Brand");
+        jLabel5.setText("Company");
 
         jLabel6.setText("...");
 
@@ -77,8 +157,18 @@ public class managerGRN extends javax.swing.JPanel {
         jLabel1.setText("GRN Number");
 
         jButton3.setText("Add To GRN");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jTextField1.setEnabled(false);
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jTextField2.setEnabled(false);
 
@@ -142,6 +232,8 @@ public class managerGRN extends javax.swing.JPanel {
             }
         });
 
+        jLabel15.setText("..");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -150,28 +242,36 @@ public class managerGRN extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField2))
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(jLabel2)
+                                .addGap(7, 7, 7))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(21, 21, 21)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(1, 1, 1)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -213,29 +313,33 @@ public class managerGRN extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jButton1))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel9)
-                        .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton3))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel7)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel8)
-                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2)))
-                .addGap(32, 32, 32)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jButton1))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel9)
+                                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton3))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel7)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton2)
+                                .addComponent(jLabel8))))
+                    .addComponent(jLabel2))
+                .addGap(13, 13, 13)
+                .addComponent(jLabel15)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -261,20 +365,32 @@ public class managerGRN extends javax.swing.JPanel {
             }
         });
 
+        jLabel17.setText("Employee");
+
+        jLabel18.setText("...");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(672, 672, 672)
                 .addComponent(jButton6))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton6)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel17)
+                        .addComponent(jLabel18)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -282,6 +398,9 @@ public class managerGRN extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        SupplierRegistration supplierRegistration = new SupplierRegistration();
+        supplierRegistration.setVisible(true);
+        supplierRegistration.setGrn(this);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -290,22 +409,146 @@ public class managerGRN extends javax.swing.JPanel {
 
     private void jFormattedTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField3KeyReleased
         // TODO add your handling code here:
+        String total = jLabel11.getText();
+        String payment = jFormattedTextField3.getText();
+
+        if (!payment.matches("[0-9]{1,13}(\\.[0-9]*)?")) {
+            jLabel14.setText("Invalid");
+            jLabel14.setForeground(Color.red);
+
+        } else {
+            double balance = Double.parseDouble(payment) - Double.parseDouble(total);
+            jLabel14.setText(String.valueOf(balance));
+            jLabel14.setForeground(jLabel7.getForeground());
+
+        }
     }//GEN-LAST:event_jFormattedTextField3KeyReleased
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        try {
+            String grnNumber = jTextField1.getText();
+            String supplierMobile = jTextField3.getText();
+            String employeeEmail = jLabel18.getText();
+            String dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            String paidAmout = jFormattedTextField3.getText();
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+            MySQL.execute("INSERT INTO `grn` VALUES ('" + grnNumber + "','" + employeeEmail + "','" + supplierMobile + "','" + dateTime + "','" + paidAmout + "')");
+
+            for (GRNItem grnItem : grnItemMap.values()) {
+
+                ResultSet resultSet = MySQL.execute("SELECT * FROM `metrial_stock` WHERE "
+                        + "`meterial_id` ='" + grnItem.getProductId() + "' AND "
+                        + "`price` ='" + grnItem.getBuyingPrice() + "' ");
+
+                String sid = "0";
+
+                if (resultSet.next()) {
+                    //stock exists
+
+                    sid = resultSet.getString("id");
+
+                    String currentQty = resultSet.getString("qty");
+                    String updateQty = String.valueOf(Double.parseDouble(currentQty) + grnItem.getQty());
+                    MySQL.execute("UPDATE `metrial_stock` SET `qty`='" + updateQty + "' WHERE `id` ='" + sid + "'");
+
+                } else {
+                    //new stock
+                    MySQL.execute("INSERT INTO `metrial_stock` (`meterial_id`,`qty`,`price`)"
+                            + "VALUES('" + grnItem.getProductId() + "','" + grnItem.getQty() + "','" + grnItem.getBuyingPrice() + "')");
+
+                    ResultSet resultSet2 = MySQL.execute("SELECT * FROM `metrial_stock` WHERE "
+                            + "`meterial_id` ='" + grnItem.getProductId() + "' AND "
+                            + "`price` ='" + grnItem.getBuyingPrice() + "' ");
+
+                    if (resultSet2.next()) {
+                        sid = resultSet2.getString("id");
+
+                    }
+                }
+
+                MySQL.execute("INSERT INTO `grn_item` (`metrial_stock_id`,`qty`,`buying_price`,`grn_grn_number`)"
+                        + "VALUES ('" + sid + "','" + grnItem.getQty() + "','" + grnItem.getBuyingPrice() + "','" + grnNumber + "')");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Stock ad = new Stock();
-        ad.show();
-       
+        Stock stock = new Stock();
+        stock.setVisible(true);
+        stock.setGrn(this);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         this.Home.removeGRN();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        String qty = jFormattedTextField1.getText();
+        String buyingPrice = jFormattedTextField2.getText();
+//        String sellingPrice = jFormattedTextField4.getText();
+//        Date mfg = jDateChooser1.getDate();
+//        Date exp = jDateChooser2.getDate();
+
+        if (qty.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter quantity", "Warning", JOptionPane.WARNING_MESSAGE);
+
+        } else if (buyingPrice.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter buying price", "Warning", JOptionPane.WARNING_MESSAGE);
+
+//        } else if (sellingPrice.isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "Please enter selling price", "Warning", JOptionPane.WARNING_MESSAGE);
+//        } else if (mfg == null) {
+//            JOptionPane.showMessageDialog(this, "Please select MFG", "Warning", JOptionPane.WARNING_MESSAGE);
+//
+//        } else if (exp == null) {
+//            JOptionPane.showMessageDialog(this, "Please select EXP", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+
+            GRNItem grnItem = new GRNItem();
+            grnItem.setBrandName(jLabel6.getText());
+            grnItem.setBuyingPrice(Double.parseDouble(jFormattedTextField2.getText()));
+//            grnItem.setExp(jDateChooser2.getDate());
+//            grnItem.setMfg(jDateChooser1.getDate());
+            grnItem.setProductId(jTextField2.getText());
+            grnItem.setQty(Double.parseDouble(jFormattedTextField1.getText()));
+//            grnItem.setSellingPrice(Double.parseDouble(jFormattedTextField4.getText()));
+            grnItem.setProductName(jLabel4.getText());
+
+            if (grnItemMap.get(jTextField2.getText()) == null) {
+                grnItemMap.put(jTextField2.getText(), grnItem);
+
+            } else {
+
+                GRNItem found = grnItemMap.get(jTextField2.getText());
+
+                if (found.getBuyingPrice() == Double.parseDouble(jFormattedTextField2.getText()) //                        && found.getSellingPrice() == Double.parseDouble(jFormattedTextField4.getText())
+                        ) {
+
+                    found.setQty(found.getQty() + Double.parseDouble(jFormattedTextField1.getText()));
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "GRN Item already exixts with different price", "Error", JOptionPane.ERROR_MESSAGE);
+
+                }
+            }
+            loadGrnItems();
+        }
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -323,6 +566,9 @@ public class managerGRN extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
