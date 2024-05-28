@@ -6,8 +6,7 @@ package gui;
 
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 import java.util.HashMap;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
@@ -21,7 +20,7 @@ import model.MySQL;
  */
 public class Stock extends javax.swing.JFrame {
 
-    HashMap<String, String> brandMap = new HashMap<>();
+    HashMap<String, String> companyMap = new HashMap<>();
 
     private managerGRN grn;
 
@@ -40,22 +39,22 @@ public class Stock extends javax.swing.JFrame {
      */
     public Stock() {
         initComponents();
-        loadBrands();
-        loadProduct();
+        companys();
+        loadMaterial();
         loadStock();
 
     }
 
-    private void loadBrands() {
+    private void companys() {
         try {
             Vector<String> vector = new Vector<>();
             vector.add("Select");
 
-            ResultSet resultset = MySQL.execute("SELECT * FROM `brand`");
+            ResultSet resultset = MySQL.execute("SELECT * FROM `company`");
 
             while (resultset.next()) {
                 vector.add(resultset.getString("name"));
-                brandMap.put(resultset.getString("name"), resultset.getString("id"));
+                companyMap.put(resultset.getString("name"), resultset.getString("id"));
             }
             jComboBox1.setModel(new DefaultComboBoxModel(vector));
 
@@ -64,11 +63,11 @@ public class Stock extends javax.swing.JFrame {
         }
     }
 
-    private void loadProduct() {
+    private void loadMaterial() {
 
         try {
-            ResultSet resultSet = MySQL.execute("SELECT * FROM `product` INNER JOIN `brand`"
-                    + "ON `product`.`brand_id` = `brand`.`id` ");
+            ResultSet resultSet = MySQL.execute("SELECT * FROM `meterial` INNER JOIN `company`"
+                    + "ON `meterial`.`company_id` = `company`.`id` ");
 
             DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
             model.setRowCount(0);
@@ -76,8 +75,8 @@ public class Stock extends javax.swing.JFrame {
             while (resultSet.next()) {
                 Vector<String> vector = new Vector<>();
                 vector.add(resultSet.getString("id"));
-                vector.add(resultSet.getString("brand.id"));
-                vector.add(resultSet.getString("brand.name"));
+                vector.add(resultSet.getString("company.id"));
+                vector.add(resultSet.getString("company.name"));
                 vector.add(resultSet.getString("name"));
 
                 model.addRow(vector);
@@ -118,13 +117,13 @@ public class Stock extends javax.swing.JFrame {
 
             int row = jTable2.getSelectedRow();
 
-            String query = "SELECT * FROM `stock` "
-                    + "INNER JOIN `product` ON `stock`.`product_id` = `product`.`id` "
-                    + "INNER JOIN `brand` ON `brand`.`id`=`product`.`brand_id` ";
+            String query = "SELECT * FROM `metrial_stock` "
+                    + "INNER JOIN `meterial` ON `metrial_stock`.`meterial_id` = `meterial`.`id` "
+                    + "INNER JOIN `company` ON `company`.`id`=`meterial`.`company_id` ";
 
             if (row != -1) {
                 String pid = String.valueOf(jTable2.getValueAt(row, 0));
-                query += "WHERE `stock`.`product_id`='" + pid + "' ";
+                query += "WHERE `metrial_stock`.`meterial_id`='" + pid + "' ";
             }
 
             if (query.contains("WHERE")) {
@@ -145,30 +144,13 @@ public class Stock extends javax.swing.JFrame {
             }
 
             if (min_price > 0 && max_price == 0) {
-                query += "`stock`.`price` > '" + min_price + "'";
+                query += "`metrial_stock`.`price` > '" + min_price + "'";
             } else if (min_price == 0 && max_price > 0) {
-                query += "`stock`.`price` < '" + max_price + "'";
+                query += "`metrial_stock`.`price` < '" + max_price + "'";
             } else if (min_price > 0 && max_price > 0) {
-                query += "`stock`.`price` > '" + min_price + "' AND `stock`.`price` < '" + max_price + "'";
+                query += "`metrial_stock`.`price` > '" + min_price + "' AND `metrial_stock`.`price` < '" + max_price + "'";
             }
 
-            //exp
-//            Date start = null;
-//            Date end = null;
-//
-//            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-//
-//            if (jDateChooser1.getDate() != null) {
-//                start = jDateChooser1.getDate();
-//                query += "`stock`.`exp` > '" + format.format(start) + "' AND ";
-//
-//            }
-//
-//            if (jDateChooser2.getDate() != null) {
-//                end = jDateChooser2.getDate();
-//                query += "`stock`.`exp` < '" + format.format(end) + "' ";
-//
-//            }
 
             String sort = String.valueOf(jComboBox2.getSelectedItem());
             query += "ORDER BY ";
@@ -177,33 +159,33 @@ public class Stock extends javax.swing.JFrame {
             query = query.replace("AND ORDER BY ", "ORDER BY ");
 
             if (sort.equals("Stock ID ASC")) {
-                query += "`stock`.`id` ASC";
+                query += "`metrial_stock`.`id` ASC";
             } else if (sort.equals("Stock ID DESC")) {
-                query += "`stock`.`id` DESC";
+                query += "`metrial_stock`.`id` DESC";
 
             } else if (sort.equals("Brand ASC")) {
-                query += "`brand`.`name` ASC";
+                query += "`company`.`name` ASC";
 
             } else if (sort.equals("Brand DESC")) {
-                query += "`brand`.`name` DESC";
+                query += "`company`.`name` DESC";
 
             } else if (sort.equals("Name ASC")) {
-                query += "`product`.`name` ASC";
+                query += "`meterial`.`name` ASC";
 
             } else if (sort.equals("Name DESC")) {
-                query += "`product`.`name` DESC";
+                query += "`meterial`.`name` DESC";
 
             } else if (sort.equals("Selling Price ASC")) {
-                query += "`stock`.`price` ASC";
+                query += "`metrial_stock`.`price` ASC";
 
             } else if (sort.equals("Selling Price DESC")) {
-                query += "`stock`.`price` DESC";
+                query += "`metrial_stock`.`price` DESC";
 
             } else if (sort.equals("Quantity ASC")) {
-                query += "`stock`.`qty` ASC";
+                query += "`metrial_stock`.`qty` ASC";
 
             } else if (sort.equals("Quantity DESC")) {
-                query += "`stock`.`qty` DESC";
+                query += "`metrial_stock`.`qty` DESC";
 
             }
 
@@ -214,14 +196,13 @@ public class Stock extends javax.swing.JFrame {
 
             while (resultSet.next()) {
                 Vector<String> vector = new Vector<>();
-                vector.add(resultSet.getString("stock.id"));
-                vector.add(resultSet.getString("product.id"));
-                vector.add(resultSet.getString("brand.name"));
-                vector.add(resultSet.getString("product.name"));
+                vector.add(resultSet.getString("metrial_stock.id"));
+                vector.add(resultSet.getString("meterial.id"));
+                vector.add(resultSet.getString("company.name"));
+                vector.add(resultSet.getString("meterial.name"));
                 vector.add(resultSet.getString("price"));
                 vector.add(resultSet.getString("qty"));
-                vector.add(resultSet.getString("mfg"));
-                vector.add(resultSet.getString("exp"));
+
 
                 model.addRow(vector);
 
@@ -345,7 +326,7 @@ public class Stock extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Product Id", "Company Id", "Company", "Name"
+                "Material Id", "Company Id", "Company", "Name"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -368,7 +349,7 @@ public class Stock extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Meterial Id", "Company", "Name", "Price", "Quantity"
+                "Id", "Material Id", "Company", "Name", "Price", "Quantity"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -395,7 +376,7 @@ public class Stock extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Buying Price");
+        jLabel5.setText("Price $");
 
         jLabel6.setText("To");
 
@@ -406,7 +387,7 @@ public class Stock extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setText("jButton6");
+        jButton6.setText("Clear");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -428,8 +409,8 @@ public class Stock extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(154, 154, 154)
+                .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -437,10 +418,10 @@ public class Stock extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(431, 431, 431)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton6)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -465,7 +446,7 @@ public class Stock extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -513,13 +494,13 @@ public class Stock extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         String id = jTextField1.getText();
-        String brand = String.valueOf(jComboBox1.getSelectedItem());
+        String compnay = String.valueOf(jComboBox1.getSelectedItem());
         String name = jTextField5.getText();
 
         if (id.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter product id", "Warning", JOptionPane.WARNING_MESSAGE);
 
-        } else if (brand.equals("Select")) {
+        } else if (compnay.equals("Select")) {
             JOptionPane.showMessageDialog(this, "Please select brand", "Warning", JOptionPane.WARNING_MESSAGE);
 
         } else if (name.isEmpty()) {
@@ -528,15 +509,15 @@ public class Stock extends javax.swing.JFrame {
         } else {
             try {
 
-                ResultSet resultSet = MySQL.execute("SELECT * FROM `product` WHERE `id` = '" + id + "' OR (`name`='" + name + "' AND `brand_id`='" + brandMap.get(brand) + "')");
+                ResultSet resultSet = MySQL.execute("SELECT * FROM `meterial` WHERE `id` = '" + id + "' OR (`name`='" + name + "' AND `company_id`='" + companyMap.get(id) + "')");
 
                 if (resultSet.next()) {
                     JOptionPane.showMessageDialog(this, "Product already added", "Warning", JOptionPane.WARNING_MESSAGE);
 
                 } else {
-                    MySQL.execute("INSERT INTO `product` VALUES ('" + id + "','" + brandMap.get(brand) + "','" + name + "')");
+                    MySQL.execute("INSERT INTO `meterial` VALUES ('" + id + "','" + name + "','" + companyMap.get(compnay) + "')");
                     JOptionPane.showMessageDialog(this, "New product added", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    loadProduct();
+                    loadMaterial();
                     resetProductUI();
                 }
 
@@ -552,10 +533,10 @@ public class Stock extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         String id = jTextField1.getText();
-        String brand = String.valueOf(jComboBox1.getSelectedItem());
+        String compnay = String.valueOf(jComboBox1.getSelectedItem());
         String name = jTextField5.getText();
 
-        if (brand.equals("Select")) {
+        if (compnay.equals("Select")) {
             JOptionPane.showMessageDialog(this, "Please select brand", "Warning", JOptionPane.WARNING_MESSAGE);
 
         } else if (name.isEmpty()) {
@@ -564,16 +545,16 @@ public class Stock extends javax.swing.JFrame {
         } else {
             try {
 
-                ResultSet resultSet = MySQL.execute("SELECT * FROM `product` WHERE `name`='" + name + "' AND `brand_id`='" + brandMap.get(brand) + "' AND `id` != '" + id + "' ");
+                ResultSet resultSet = MySQL.execute("SELECT * FROM `meterial` WHERE `name`='" + name + "' AND `company_id`='" + companyMap.get(compnay) + "' AND `id` != '" + id + "' ");
 
                 if (resultSet.next()) {
                     JOptionPane.showMessageDialog(this, "Product already added", "Warning", JOptionPane.WARNING_MESSAGE);
 
                 } else {
-                    MySQL.execute("UPDATE `product` SET `brand_id` ='" + brandMap.get(brand) + "', `name` ='" + name + "'"
+                    MySQL.execute("UPDATE `meterial` SET `company_id` ='" + companyMap.get(compnay) + "', `name` ='" + name + "'"
                             + "WHERE `id` ='" + id + "'");
                     JOptionPane.showMessageDialog(this, "Product updated", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    loadProduct();
+                    loadMaterial();
                     resetProductUI();
                 }
 
@@ -588,25 +569,29 @@ public class Stock extends javax.swing.JFrame {
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
         // TODO add your handling code here:
 
-//        int row = jTable2.getSelectedRow();
-//
-//        jTextField1.setText(String.valueOf(jTable2.getValueAt(row, 0)));
-//        jTextField1.setEditable(false);
-//
-//        jComboBox1.setSelectedItem(String.valueOf(jTable2.getValueAt(row, 2)));
-//        jTextField5.setText(String.valueOf(jTable2.getValueAt(row, 3)));
-//
-//        loadStock();
-//
-//        if (evt.getClickCount() == 2) {
-//            if (grn != null) {
-//                grn.getjTextField4().setText(String.valueOf(jTable2.getValueAt(row, 0)));
-//                grn.getjLabel3().setText(String.valueOf(jTable2.getValueAt(row, 2)));
-//                grn.getjLabel12().setText(String.valueOf(jTable2.getValueAt(row, 3)));
-//                this.dispose();
-//                grn.getjFormattedTextField2().grabFocus();
-//            }
-//        }
+        int row = jTable2.getSelectedRow();
+
+        jTextField1.setText(String.valueOf(jTable2.getValueAt(row, 0)));
+        jTextField1.setEditable(false);
+
+        jComboBox1.setSelectedItem(String.valueOf(jTable2.getValueAt(row, 2)));
+        jTextField5.setText(String.valueOf(jTable2.getValueAt(row, 3)));
+
+        loadStock();
+
+        if (evt.getClickCount() == 2) {        
+            
+            if (grn != null) {
+                grn.getjTextField2().setText(String.valueOf(jTable2.getValueAt(row, 0)));
+                grn.getjLabel6().setText(String.valueOf(jTable2.getValueAt(row, 2)));
+                grn.getjLabel4().setText(String.valueOf(jTable2.getValueAt(row, 3)));
+                this.dispose();
+                grn.getjFormattedTextField2().grabFocus();
+                
+            }else{
+                System.out.println("fk");
+            }
+        }
 
 
     }//GEN-LAST:event_jTable2MouseClicked
