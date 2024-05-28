@@ -6,7 +6,7 @@ package gui;
 
 import model.UserBean;
 
-/**
+/** 
  *
  * @author USER
  */
